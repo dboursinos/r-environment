@@ -16,7 +16,11 @@ RUN apt-get update && apt-get install -y \
   software-properties-common \
   curl \
   python3 \
-  python3-pip
+  python3-pip \
+  texlive-latex-base \
+  texlive-fonts-recommended \
+  texlive-latex-extra \
+  texlive-xetex
 
 RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 RUN R -e "install.packages('dplyr', repos ='http://cran.rstudio.com/')"
@@ -39,8 +43,7 @@ RUN R -e "install.packages('knitr', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('car', lib='/usr/local/lib/R/site-library', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tidyverse', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('lmtest', repos ='http://cran.rstudio.com/')"
-RUN R -e "install.packages('tinytex', repos ='http://cran.rstudio.com/')"
-RUN R -e "tinytex::install_tinytex()"
+RUN R -e "install.packages('performance', repos ='http://cran.rstudio.com/')"
 
 RUN R -e "remotes::install_github('remkoduursma/lgrdata')"
 
