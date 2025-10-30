@@ -10,7 +10,7 @@ CONTAINER_NAME := r-environment
 all: build run
 
 build:
-	docker build -f ../../Docker/R.Dockerfile -t r-environment .
+	docker build -f ./R.Dockerfile -t r-environment .
 
 run_report:
 	docker run -it --rm --name $(CONTAINER_NAME) --user $(id -u):$(id -g) -v ${PWD}:/work r-environment R -e "rmarkdown::render('$(SRC_DIR)/$(REPORT_NAME).$(REPORT_EXT)', output_file='./output')"
