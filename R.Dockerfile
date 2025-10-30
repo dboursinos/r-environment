@@ -1,4 +1,4 @@
-FROM r-base:4.4.3
+FROM r-base:4.5.1
 
 RUN apt-get update && apt-get install -y \
   sudo \
