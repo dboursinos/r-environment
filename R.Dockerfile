@@ -1,8 +1,10 @@
-FROM r-base:4.5.1
+FROM r-base:4.5.2
 
 RUN apt-get update && apt-get install -y \
   sudo \
   pandoc \
+  gdebi-core \
+  wget \
   libcurl4-gnutls-dev \
   libcairo2-dev \
   libxt-dev \
@@ -21,6 +23,11 @@ RUN apt-get update && apt-get install -y \
   texlive-fonts-recommended \
   texlive-latex-extra \
   texlive-xetex
+
+RUN wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \
+  gdebi -n quarto-linux-amd64.deb && \
+  rm quarto-linux-amd64.deb
+
 
 RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
 RUN R -e "install.packages('dplyr', repos ='http://cran.rstudio.com/')"
@@ -44,9 +51,6 @@ RUN R -e "install.packages('car', lib='/usr/local/lib/R/site-library', repos ='h
 RUN R -e "install.packages('tidyverse', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('lmtest', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('performance', repos ='http://cran.rstudio.com/')"
-
-RUN R -e "remotes::install_github('remkoduursma/lgrdata')"
-
 
 # Bayes analysis backend
 RUN R -e "install.packages('rstan', repos='https://cloud.r-project.org')"
