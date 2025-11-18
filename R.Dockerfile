@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   python3 \
   python3-pip \
+  librsvg2-dev \
   texlive-latex-base \
   texlive-fonts-recommended \
   texlive-latex-extra \
@@ -51,6 +52,11 @@ RUN R -e "install.packages('car', lib='/usr/local/lib/R/site-library', repos ='h
 RUN R -e "install.packages('tidyverse', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('lmtest', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('performance', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('BDgraph', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('psych', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('bnlearn', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('GGally', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('uwot', repos ='http://cran.rstudio.com/')"
 
 # Bayes analysis backend
 RUN R -e "install.packages('rstan', repos='https://cloud.r-project.org')"
@@ -72,9 +78,9 @@ RUN R -e "devtools::install_github('rstudio/shiny')"
 #RUN R -e "install.packages('shiny', repos ='http://cran.rstudio.com/')"
 
 # Install Jupyter and IRkernel for R support
-RUN pip3 install jupyter notebook
-RUN R -e "install.packages('IRkernel', repos='https://cloud.r-project.org')"
-RUN R -e "IRkernel::installspec(user = FALSE)"
+#RUN pip3 install jupyter notebook
+#RUN R -e "install.packages('IRkernel', repos='https://cloud.r-project.org')"
+#RUN R -e "IRkernel::installspec(user = FALSE)"
 
 # Set the working directory
 WORKDIR /work
