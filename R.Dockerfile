@@ -57,6 +57,8 @@ RUN R -e "install.packages('psych', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('bnlearn', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('GGally', repos ='http://cran.rstudio.com/')"
 RUN R -e "install.packages('uwot', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('cluster', repos ='http://cran.rstudio.com/')"
+RUN R -e "install.packages('factoextra', repos='https://cloud.r-project.org')"
 
 # Bayes analysis backend
 RUN R -e "install.packages('rstan', repos='https://cloud.r-project.org')"
@@ -81,7 +83,6 @@ RUN R -e "devtools::install_github('rstudio/shiny')"
 #RUN pip3 install jupyter notebook
 #RUN R -e "install.packages('IRkernel', repos='https://cloud.r-project.org')"
 #RUN R -e "IRkernel::installspec(user = FALSE)"
-
 # Set the working directory
 WORKDIR /work
 
